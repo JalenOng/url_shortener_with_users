@@ -1,0 +1,5 @@
+<div class="container">
+  <p>Long URL: <%= @url_object.long_url%></p>
+  <p>Short URL: <%= request.host + @url_object.short_url%></p>
+  <p>Number of visits: <%= @url_object.click_count%></p>
+</div>
