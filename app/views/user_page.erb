@@ -1,0 +1,22 @@
+<h2>Welcome <%= @user.username %></h2>
+
+
+<form action="/user/<%= @user.id %>/" method="post">
+<input type="text" name="post[long_url]">
+<input type="submit" value="Shorten!">
+<input type="text" value=0 hidden name="post[click_count]">
+</form>
+
+
+<% @user.urls.each do |u|%>
+
+<p><%= u.long_url %></p>
+<p><%= u.short_url %></p>
+
+<% end %>
+
+
+
+
+
+

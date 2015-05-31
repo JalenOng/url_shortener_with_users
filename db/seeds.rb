@@ -1,5 +1,8 @@
+n = 1
+
 10.times do
   User.create(
     username: Faker::Internet.user_name,
-    password: Faker::Internet.password)
+    password: n)
+  n += 1
 end

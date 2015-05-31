@@ -1,21 +1,24 @@
-<div class="container">
+
   <h1>URL shortener</h1>
-  <% if session[:user_id].nil? %>
     <h1>Log in here</h1>
     <form action="/login" method="post">
-    <p>Username</p><input type="text" name="post[username]">
-    <p>Password</p><input type="text" name="post[password]">
+    <p>Username</p><input type="text" name="username">
+    <p>Password</p><input type="text" name="password">
     <br/><br/>
     <input type="submit" value="Login">
     </form>
-  <% else %>
-    <p>Username: <%= @user.username %></p>
-  <% end %>
+ 
   <br/>
   <br/>
+
+  <a href="/create_user">Create New User</a>
+
+  <br/>
+  <br/> 
+
   Please enter the URL you would like to shorten:
 
-  <form action="/" method="post">
+  <form action="/post_url" method="post">
   <input type="text" name="post[long_url]">
   <input type="submit" value="Shorten!">
   <input type="text" value=0 hidden name="post[click_count]">
@@ -25,6 +28,5 @@
 
   <p><% @all_url.each do |url|%></p>
       <p><%= url.long_url %></p>
-      <p><%= request.host + url.short_url %></p>
+      <p><%= request.host %>/<%= url.short_url %></p>
   <% end %>
-</div>

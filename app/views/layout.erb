@@ -17,7 +17,19 @@
 
   <title></title>
 </head>
+<div class="container">
+  <a href="/">Home!</a>
+
+<% if logged_in? %>
+    <form action="/logout" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="Log Out">
+    </form>
+  <% end %>
+
 <body>
+
   <%= yield %>
 </body>
+</div>
 </html>

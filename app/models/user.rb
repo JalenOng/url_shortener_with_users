@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :urls
+  validates :username, :password, presence: true
   validates :username, uniqueness: true
 
   def self.authenticate(username, password)

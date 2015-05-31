@@ -1,5 +1,6 @@
 class Url < ActiveRecord::Base
   before_create :shorten
+  belongs_to :user
   validates :long_url, presence: true
   validates :short_url, uniqueness: true
 
@@ -10,7 +11,8 @@ class Url < ActiveRecord::Base
 
     unique_shorten_url = Url.where(short_url: rand_str)
     if unique_shorten_url == []
-      self.short_url = "/#{rand_str}"
+      self.short_url = "#{rand_str}"
+    
     else
       shorten
     end
