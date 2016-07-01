@@ -39,9 +39,11 @@ end
 
 post '/post_url' do
  #shorten url
+
  @url = Url.create(params[:post])
  
- redirect to("/")
+ @url.to_json
+ # redirect to("/")
 
 end
 

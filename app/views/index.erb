@@ -25,8 +25,42 @@
   </form>
 
 
+  <table class="url_table">
+    <tr>
+    <th>Long Url</th>
+    <th>Short Url</th>
+    </tr>
 
-  <p><% @all_url.each do |url|%></p>
-      <p><%= url.long_url %></p>
-      <p><%= request.host %>/<%= url.short_url %></p>
-  <% end %>
+    <% @all_url.each do |url|%>
+      <tr>
+        <td><%= url.long_url %></td>
+        <td><%= url.short_url %></td>
+      </tr>
+    <% end %>
+  </table>
+
+<script>
+
+  $(document).ready(function(){
+
+    $('form').submit(function(e){
+
+      e.preventDefault();
+    
+      $.ajax({
+
+        type: "POST",
+        url: $(this).attr("action"),
+        data: $(this).serialize(),
+        dataType: "json",
+        success: function(response){
+          $(".url_table").append('<tr><td>' + response.long_url + '</td><td>' + response.short_url + '</td></tr>') },
+        error: function(request, errorType, errorMessage) {
+          alert('Error: ' + errorType + ' with message: ' + errorMessage)} 
+      })
+
+    })
+  })
+
+</script>
+
